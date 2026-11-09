@@ -1,0 +1,27 @@
+name: astrbot_plugin_image_tiles
+display_name: 识图切块
+short_desc: 大图先切块再送模型，手机照片里的小字、细节终于能看清
+desc: >-
+  很多多模态接口对图片有硬上限：DeepSeek 视觉大约把每张图压到 1300×1300 像素、
+  最多 1024 token，AstrBot 自己还会再压一次。一张手机原图经过这两道压缩，
+  屏幕上的数字、角落的小字基本全糊了。<br>
+  本插件在请求发给模型之前，把图按 2×2 / 3×3 切开，逐块缩放压缩后重新塞回去，
+  等于把可用细节放大了 4~9 倍，并附一句说明告诉模型「这些块拼起来才是同一张图」。<br>
+  支持 EXIF 摆正、小图跳过、逐块体积控制、可选重叠、按图分组说明，任何一步出错都退回原图。
+version: 0.2.0
+author: 王子
+license: MIT
+repo: "https://github.com/wzq780/astrbot_plugin_image_tiles"
+astrbot_version: ">=4.5.0"
+support_platforms:
+  - aiocqhttp
+  - telegram
+  - discord
+  - qq_official
+tags:
+  - 识图
+  - 图片
+  - 多模态
+  - 视觉
+  - 切图
+  - 细节增强
