@@ -1,0 +1,62 @@
+{
+  "enabled": {
+    "description": "开关",
+    "type": "bool",
+    "default": true,
+    "hint": "开着时，收到的图片会被切成小块再看，细节更清楚；代价是每张图大约多花 3 倍视觉 token"
+  },
+  "grid": {
+    "description": "切片数量",
+    "type": "int",
+    "default": 2,
+    "hint": "2 = 切成 2×2 四块（推荐）；3 = 3×3 九块，字特别小、要抠细节时用，更贵更慢"
+  },
+  "max_images": {
+    "description": "每次最多处理几张图",
+    "type": "int",
+    "default": 2,
+    "hint": "一次发很多张时只切前几张，其余保持原样，避免一轮烧掉太多视觉 token"
+  },
+  "min_side_to_tile": {
+    "description": "多小的图不切（像素）",
+    "type": "int",
+    "default": 700,
+    "hint": "图片最长边小于这个值就保持原样。小图切了只会让每块更糊，白花钱"
+  },
+  "tile_max_side": {
+    "description": "每块最长边（像素）",
+    "type": "int",
+    "default": 1200,
+    "hint": "切完的单块会缩到这个边长以内。大多数视觉接口有效像素在 1024~1568 之间，填太高没用"
+  },
+  "tile_max_bytes_kb": {
+    "description": "每块体积上限（KB）",
+    "type": "int",
+    "default": 420,
+    "hint": "超过就自动降 JPEG 质量。如果平台报图片太大，把这个值调小，比如 300"
+  },
+  "jpeg_quality": {
+    "description": "JPEG 起始质量",
+    "type": "int",
+    "default": 88,
+    "hint": "先按这个质量压，超体积再往下降。文字多的图建议 90 以上"
+  },
+  "overlap_percent": {
+    "description": "切块重叠（%）",
+    "type": "int",
+    "default": 0,
+    "hint": "相邻两块各多带一点边缘，防止正好切在一行字中间。0 = 不重叠；字密的截图可以试 2"
+  },
+  "process_inline_images": {
+    "description": "连已内联的图片也切",
+    "type": "bool",
+    "default": false,
+    "hint": "默认只处理还带 URL 的图片。若你的版本在插件之前就把图片转成了 base64，可打开此项，但要留意平台体积上限"
+  },
+  "note_enabled": {
+    "description": "追加说明文字",
+    "type": "bool",
+    "default": true,
+    "hint": "告诉模型这些块是同一张图的局部，避免它把局部当完整图片。一般不需要关"
+  }
+}
